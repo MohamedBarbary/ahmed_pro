@@ -1,7 +1,7 @@
 const typesHtml = `
      <div class="data">
             <label for="da">Type Of Material</label>
-            <input class="details" id ="da"list="mat"name="prog" required placeholder="Enter Type Of Material" >
+            <input class="details" id ="da"list="mat"name="prog" required  >
 
             <datalist  class="mater"   id="mat">
                 <option value="حديد سداسي ">
@@ -18,8 +18,9 @@ const typesHtml = `
 `;
 const thicknessHtml = ` <div class="thickness"> 
 <label for="id6"> Thickness Of Material </label>
-    <input class="thick"  id ="id6" type="text" required placeholder="Enter Number Of Order">
+    <input class="thick"  id ="id6" type="text" required>
 </div> `;
 document.querySelector(".number").insertAdjacentHTML("afterend", typesHtml);
 document.querySelector(".dia").insertAdjacentHTML("afterend", thicknessHtml);
-document.querySelector(".out").textContent = "44";
+document.querySelector(".type").textContent = "Pipe";
+document.querySelector(".out1").textContent = "عدد الوحدات في المتر =10 ";

@@ -62,6 +62,9 @@ div {
 .active{
     opacity: 100; 
 }
+.output {
+    margin-right: 80px;
+}
 .out {
     padding: 2%;
     display: block;

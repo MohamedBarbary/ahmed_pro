@@ -2,6 +2,7 @@
 const mainPart = document.querySelector(".main");
 const progType = document.querySelector(".type");
 const submit = document.querySelector(".bt1");
+
 const out1 = document.querySelector(".out1");
 const out2 = document.querySelector(".out2");
 const out3 = document.querySelector(".out3");
@@ -16,14 +17,14 @@ const typesHtml = `
             <input class="details" id ="da"list="mat"name="prog" required  >
 
             <datalist  class="mater"   id="mat">
-                <option value="حديد سداسي ">
-                <option value="حديد مربع ">
-                <option value=" حديد ملفوف ">
+                <option value="حديد سداسي">
+                <option value="حديد مربع">
+                <option value= "حديد ملفوف">
                 <option value="أصفر سداسي">
-                <option value="أصفر مربع ">
+                <option value="أصفر مربع">
                 <option value="أصفر ملفوف">
                 <option value="أحمر سداسي">
-                <option value="أحمد مربع">
+                <option value="أحمر مربع">
                 <option value="أحمر ملفوف">
                 </datalist>
         </div> 
@@ -74,14 +75,14 @@ const weightOrder = function (metOrder, weight) {
 const unitWeightBeforOP = function (weight, numUnitsMeter) {
   return weight / numUnitsMeter;
 };
+
 //
 // load app
 // intial data
 let load = 0;
-const results = [];
-const pipeOutput = function (dia, thick, kPrice, len, order) {
-  const size = pipeSize(dia, thick);
-  const weight = calcWeight(size, 8);
+
+const output = function (size, kPrice, len, order, density) {
+  const weight = calcWeight(size, density);
   const metPrice = meterPrice(weight, kPrice);
   const unitsNumber = numUnitsMeter(len);
   const price = unitPrice(metPrice, unitsNumber);
@@ -96,7 +97,8 @@ const pipeOutput = function (dia, thick, kPrice, len, order) {
   out6.textContent = `order kiloes = ${weigOrder} Kg`;
   out7.textContent = `weight before operation = ${unitWeightBefor} Kg`;
 };
-const inputs = function () {
+
+const result = function () {
   submit.addEventListener("click", function (e) {
     e.preventDefault();
     const diameter = document.querySelector(".diameter").value;
@@ -104,12 +106,43 @@ const inputs = function () {
     const lenght = document.querySelector(".mat_lenght").value;
     const nOrder = document.querySelector(".order").value;
     if (load === 1) {
-      const details = document.querySelector(".details").value;
-      console.log(details.value);
+      const data = document.querySelector(".details").value;
+      /// ////
+      if (data === "حديد مربع") {
+        const size = squareSize(diameter);
+        output(size, k_price, lenght, nOrder, 8);
+      } else if (data === "حديد ملفوف") {
+        const size = coilSize(diameter);
+        output(size, k_price, lenght, nOrder, 8);
+      } else if (data === "حديد سداسي") {
+        const size = hexaSize(diameter);
+        output(size, k_price, lenght, nOrder, 8);
+      } else if (data === "أصفر مربع") {
+        const size = squareSize(diameter);
+        output(size, k_price, lenght, nOrder, 8.73);
+      } else if (data === "أصفر ملفوف") {
+        const size = coilSize(diameter);
+        output(size, k_price, lenght, nOrder, 8.73);
+      } else if (data === "أصفر سداسي") {
+        const size = hexaSize(diameter);
+        output(size, k_price, lenght, nOrder, 8.73);
+      } else if (data === "أحمر مربع") {
+        const size = squareSize(diameter);
+        output(size, k_price, lenght, nOrder, 8.94);
+      } else if (data === "أحمر ملفوف") {
+        const size = coilSize(diameter);
+        output(size, k_price, lenght, nOrder, 8.94);
+      } else if (data === "أحمر سداسي") {
+        const size = hexaSize(diameter);
+        output(size, k_price, lenght, nOrder, 8.94);
+      }
+      //// /////
     }
     if (load === 2) {
       const thick = document.querySelector(".thick").value;
-      pipeOutput(diameter, thick, k_price, lenght, nOrder);
+      const size = pipeSize(diameter, thick);
+      console.log(size);
+      output(size, k_price, lenght, nOrder, 8);
     }
   });
 };
@@ -120,10 +153,8 @@ document.querySelector(".btn1").addEventListener("click", function () {
     upateGui("number", typesHtml, "Shape");
     if (load === 2) document.querySelector(".thickness").remove();
     load = 1;
+    result();
   }
-
-  // read inputs
-  inputs();
 });
 // Pipe
 document.querySelector(".btn2").addEventListener("click", function (e) {
@@ -132,7 +163,6 @@ document.querySelector(".btn2").addEventListener("click", function (e) {
     upateGui("dia", thicknessHtml, "Pipe");
     if (load === 1) document.querySelector(".data").remove();
     load = 2;
-    // read inputs
-    inputs();
+    result();
   }
 });

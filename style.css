@@ -15,7 +15,7 @@ and (max-device-width: 1000px)
     text-align: center;
     /* position: absolute; */
     /* left: 10%; */
-    opacity: 100%; 
+    opacity: 0; 
     display: grid;  
     grid-gap: 5px;  
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -62,9 +62,6 @@ div {
 .active{
     opacity: 100; 
 }
-.del{
-    display: none;
-}
 .out {
     padding: 2%;
     display: block;
@@ -73,7 +70,7 @@ div {
     width: 80%;
     height: 60px;
     color: red ;
-    font-size: 40px;
+    font-size: 30px;
     border: blue 2px solid;
 }
 .submit{

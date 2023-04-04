@@ -35,7 +35,7 @@ div {
  {
     background-color: white;
     width: 70%;
-    height: 30px;
+    height: 70px;
  
 }
 .selected{
@@ -57,14 +57,15 @@ div {
 }
 .active{
     opacity: 100; 
-    ;
 }
-.del{display: none;}
+.del{
+    display: none;
+}
 .out {
     display: block;
     text-align: center;
     margin: 2% 25%;
     width: 70%;
-    height: 30px;
+    height: 50px;
     border: blue 2px solid;
 }
